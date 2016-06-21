@@ -1,0 +1,62 @@
+﻿@*@model IEnumerable<BookShelf.Models.Book>*@
+@model BookShelf.ViewModels.BookSearchResults
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-1">.col-md-1</div>
+        <div class="col-md-1">.col-md-1</div>
+        <div class="col-md-1">.col-md-1</div>
+        <div class="col-md-1">.col-md-1</div>
+        <div class="col-md-1">.col-md-1</div>
+        <div class="col-md-1">.col-md-1</div>
+        <div class="col-md-1">.col-md-1</div>
+        <div class="col-md-1">.col-md-1</div>
+        <div class="col-md-1">.col-md-1</div>
+        <div class="col-md-1">.col-md-1</div>
+        <div class="col-md-1">.col-md-1</div>
+        <div class="col-md-1">.col-md-1</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">@Html.TextBox("searchTerm", null, new {@class = "form-control"})</div>
+        <div class="col-md-8"><input type="submit" class="btn btn-primary" value="Search" /></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">@Html.TextBox("Page", 1, new { @class = "form-control" })</div>
+    </div>
+    
+}
+
+@if (Model != null)
+{
+    <h3>Total Items @Model.TotalItems</h3>
+
+    <table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Title)*@
+            Title
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Books)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+        </tr>
+    }
+    </table>
+}
+
+
+
