@@ -1,0 +1,8 @@
+﻿Google
+
+client id 
+89568150123-b21attsgubajg5edjoevkp7q24ufenhs.apps.googleusercontent.com
+
+secret
+izj1a9lXxI5iE-Pzviq_-O-6
+
