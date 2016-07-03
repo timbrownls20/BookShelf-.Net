@@ -22,9 +22,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Add", "Create", "Book")</li>
+                    @*<li>@Html.ActionLink("Add", "Create", "Book")</li>*@
                     <li>@Html.ActionLink("List", "Index", "Book")</li>
-                    <li>@Html.ActionLink("Search", "Search", "Book")</li>
+                    @*<li>@Html.ActionLink("Search", "Search", "Book")</li>*@
+                    <li>@Html.ActionLink("Search", "Search", "Book", new { searchTerm = Session["SearchTerm"], currentPage = Session["CurrentPage"] }, null)</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>

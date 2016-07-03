@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<BookShelf.Models.Book>*@
-@model BookShelf.ViewModels.BookSearchResults
+﻿@model BookShelf.ViewModels.PagedResults<BookShelf.Models.Book>
 
 @{
     ViewBag.Title = "Search";
@@ -11,51 +10,46 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="row">
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-    </div>
+ 
     <div class="row">
         <div class="col-md-4">@Html.TextBox("searchTerm", null, new {@class = "form-control"})</div>
         <div class="col-md-8"><input type="submit" class="btn btn-primary" value="Search" /></div>
     </div>
-    <div class="row">
-        <div class="col-md-12">@Html.TextBox("Page", 1, new { @class = "form-control" })</div>
-    </div>
-    
 }
 
 @if (Model != null)
 {
-    <h3>Total Items @Model.TotalItems</h3>
+    <h3>Total Items @Model.TotalItems</h3>  
 
     <table class="table">
     <tr>
-        <th>
-            @*@Html.DisplayNameFor(model => model.Title)*@
-            Title
-        </th>
+        <th>&nbsp;</th>
+        <th>Title</th>
+        <th>Authors</th>
     </tr>
 
-    @foreach (var item in Model.Books)
+    @foreach (var item in Model.Results)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                <a href="@Url.Action("Create", new { id = item.BookIDSource })">
+                    <img src="@item.SmallThumbnail" alt="@item.Title" />
+                </a>
             </td>
+            <td>@Html.DisplayFor(modelItem => item.Title)</td>
+            <td>@item.GetAuthorsForDisplay()</td>
         </tr>
     }
     </table>
+    <ul class="pagination">
+        @for (int i = 1; i <= Model.Pages; i++)
+        {
+            <li class="@(Model.CurrentPage == i ? "active" : "")">
+                <a href=@Url.Action("Search", new { searchTerm = Model.SearchTerm, currentPage = i })>@i</a>
+            </li>
+        }
+        
+    </ul>
 }
 
 

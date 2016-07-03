@@ -58,11 +58,11 @@ namespace BookShelf
             //   appId: "",
             //   appSecret: "");
 
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            {
-                ClientId = "89568150123-b21attsgubajg5edjoevkp7q24ufenhs.apps.googleusercontent.com",
-                ClientSecret = "izj1a9lXxI5iE-Pzviq_-O-6"
-            });
+            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //{
+            //    ClientId = "",
+            //    ClientSecret = ""
+            //});
         }
     }
 }

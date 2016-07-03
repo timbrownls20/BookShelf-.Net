@@ -45,9 +45,17 @@ namespace BookShelf.Controllers
         }
 
         // GET: Book/Create
-        public ActionResult Create()
+        public ActionResult Create(string id)
         {
-            return View();
+            //if (string.IsNullOrWhiteSpace(id))
+            //{
+            //    return View("Save");
+            //}
+            //else
+            //{
+            var book = bookService.Get(id);
+            return View("Save", book);
+            //}
         }
 
         // POST: Book/Create
@@ -55,7 +63,8 @@ namespace BookShelf.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BookID,Title,ISBN")] Book book)
+        //public ActionResult Create([Bind(Include = "BookID,Title,ISBN")] Book book)
+        public ActionResult Create(Book book, List<Author> authors)
         {
             if (ModelState.IsValid)
             {
@@ -64,10 +73,9 @@ namespace BookShelf.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(book);
+            return View("Save", book);
         }
 
-        // GET: Book/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,15 +87,13 @@ namespace BookShelf.Controllers
             {
                 return HttpNotFound();
             }
-            return View(book);
+            return View("Save", book);
         }
 
-        // POST: Book/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BookID,Title,ISBN")] Book book)
+        //public ActionResult Edit([Bind(Include = "BookID,Title,ISBN")] Book book)
+        public ActionResult Edit(Book book)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +104,6 @@ namespace BookShelf.Controllers
             return View(book);
         }
 
-        // GET: Book/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +118,6 @@ namespace BookShelf.Controllers
             return View(book);
         }
 
-        // POST: Book/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -124,15 +128,28 @@ namespace BookShelf.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Search()
+        //[ValidateAntiForgeryToken]
+        public ActionResult Search(string searchTerm, int? currentPage)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                return View();
+            }
+            else
+            {
+                Session["SearchTerm"] = searchTerm;
+                Session["CurrentPage"] = currentPage;
+
+                var viewModel = bookService.Search(searchTerm, currentPage.GetValueOrDefault(1));
+                return View(viewModel);
+            }
         }
 
         [HttpPost]
-        public ActionResult Search(string searchTerm, int page)
+        public ActionResult Search(string searchTerm)
         {
-            var viewModel = bookService.SearchBooks(searchTerm, page);
+            Session["SearchTerm"] = searchTerm;
+            var viewModel = bookService.Search(searchTerm, 1);
             return View(viewModel);
         }
 

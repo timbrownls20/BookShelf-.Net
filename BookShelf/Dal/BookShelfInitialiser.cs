@@ -7,13 +7,13 @@ namespace BookShelf.Dal
     {
         protected override void Seed(BookShelfContext context)
         {
-            var books = new List<Book>
-            {
-                new Book {Title = " Game of Thrones", ISBN = "001"}
-            };
+            //var books = new List<Book>
+            //{
+            //    new Book {Title = " Game of Thrones", ISBN_10 = "001"}
+            //};
 
-            books.ForEach(b => context.Books.Add(b));
-            context.SaveChanges();
+            //books.ForEach(b => context.Books.Add(b));
+            //context.SaveChanges();
         }
     }
 }

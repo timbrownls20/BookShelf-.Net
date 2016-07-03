@@ -14,15 +14,15 @@ namespace BookShelf
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             //routes.MapRoute(
-            //    name: "BookSearch",
-            //    url: "Book/Search/{searchTerm}",
-            //    defaults: new { controller = "Book", action = "Search", searchTerm = "searchTerm" }
+            //    name: "Book",
+            //    url: "Book/Create/{isbn}",
+            //    defaults: new { controller = "Book", action = "Create", isbn = UrlParameter.Optional  }
             //);
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional});
 
           
         }

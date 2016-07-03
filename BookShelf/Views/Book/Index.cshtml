@@ -4,29 +4,27 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>My Shelf</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ISBN)
-        </th>
-        <th></th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            <img src="@item.SmallThumbnail" alt="@item.Title" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ISBN)
+            @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.BookID }) |

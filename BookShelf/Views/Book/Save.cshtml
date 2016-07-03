@@ -1,0 +1,89 @@
+﻿@model BookShelf.Models.Book
+
+@{
+    ViewBag.Title = "Save";
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Book</h4>
+        <hr />
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.BookID)
+        @Html.HiddenFor(model => model.BookIDSource)
+        @Html.HiddenFor(model => model.SmallThumbnail)
+        @Html.HiddenFor(model => model.Thumbnail)
+        @Html.HiddenFor(model => model.ISBN_10)
+        @Html.HiddenFor(model => model.ISBN_13)
+        @*@Html.HiddenFor(model => model.Authors)*@
+
+        <div class="form-group">
+            <div class="col-md-2 ">
+            </div>
+            <div class="col-md-10 ">
+                <img src="@Model.Thumbnail" alt="@Model.Title" class="center-block" />
+            </div>
+            </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Authors, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Authors, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ISBN_10, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ISBN_10, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ISBN_13, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ISBN_13, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @if (Session["SearchTerm"] != null)
+    {
+        @Html.ActionLink("Back to Search", "Search", new { searchTerm = Session["SearchTerm"], currentPage = Session["CurrentPage"] })
+    }
+    else
+    {
+        @Html.ActionLink("Back to List", "Index")
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
