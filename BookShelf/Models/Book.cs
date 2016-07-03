@@ -24,6 +24,7 @@ namespace BookShelf.Models
         [DisplayName("ISBN 13")]
         public string ISBN_13 { get; set; }
 
+        //[UIHint("tinymce_jquery_full"), AllowHtml]
         [AllowHtml]
         [DataType(DataType.Html)]
         public string Description { get; set; }
@@ -45,10 +46,10 @@ namespace BookShelf.Models
             return !string.IsNullOrWhiteSpace(ISBN_13) ? ISBN_13 : ISBN_10;
         }
 
-        public string GetAuthorsForDisplay()
-        {
-            var displayNames = Authors.Select(x => x.DisplayName).ToList();
-            return string.Join(",", displayNames);
-        }
+        //public string GetAuthorsForDisplay()
+        //{
+        //    var displayNames = Authors.Select(x => x.DisplayName).ToList();
+        //    return string.Join(",", displayNames);
+        //}
     }
 }

@@ -1,9 +1,12 @@
-# BookShelf
+## BookShelf
 
-##Demonstrates
+###Description
+Demo app which searches for and maintains list of books
+
+###Demonstrates
 
 - Automapper
-- Castle Winsdor
-- RESTful API
-- Federated API calls (google)
+- Dependency Injection (Castle Winsdor)
+- RESTful API (Google Book API)
+- Federated API calls (Google Auth)
 

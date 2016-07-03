@@ -3,6 +3,7 @@ In progress
 HTML control and template for Description field
 
 TODO
+include authors on search
 Put in JQuery autocomplete for add screen
 Put in repository layer
 Move paging control into Html Helper
