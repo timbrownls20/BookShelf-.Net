@@ -19,7 +19,6 @@
         @Html.HiddenFor(model => model.Thumbnail)
         @Html.HiddenFor(model => model.ISBN_10)
         @Html.HiddenFor(model => model.ISBN_13)
-        @*@Html.HiddenFor(model => model.Authors)*@
 
         <div class="form-group">
             <div class="col-md-2 ">
@@ -37,26 +36,13 @@
             </div>
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.Authors, htmlAttributes: new { @class = "control-label col-md-2" })
+            
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.Authors, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.ISBN_10, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ISBN_10, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Authors, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ISBN_13, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ISBN_13, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })

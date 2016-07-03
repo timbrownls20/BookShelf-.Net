@@ -273,6 +273,8 @@
     <Content Include="Views\Book\Details.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Book\Search.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Author.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Author.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

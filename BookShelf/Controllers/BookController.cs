@@ -4,11 +4,9 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using BookShelf.Dal;
 using BookShelf.Models;
-using BookShelf.ViewModels;
 using BookShelf.WebServices.Interfaces;
 
 namespace BookShelf.Controllers
@@ -23,20 +21,18 @@ namespace BookShelf.Controllers
             this.bookService = bookService;
         }
 
-        // GET: Book
         public ActionResult Index()
         {
             return View(db.Books.ToList());
         }
 
-        // GET: Book/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Books.Find(id);
+            Book book = db.Books.Where(x => x.BookID == id).Include("Authors").FirstOrDefault();
             if (book == null)
             {
                 return HttpNotFound();
@@ -44,27 +40,15 @@ namespace BookShelf.Controllers
             return View(book);
         }
 
-        // GET: Book/Create
         public ActionResult Create(string id)
         {
-            //if (string.IsNullOrWhiteSpace(id))
-            //{
-            //    return View("Save");
-            //}
-            //else
-            //{
             var book = bookService.Get(id);
             return View("Save", book);
-            //}
         }
 
-        // POST: Book/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "BookID,Title,ISBN")] Book book)
-        public ActionResult Create(Book book, List<Author> authors)
+        public ActionResult Create(Book book)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +66,7 @@ namespace BookShelf.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Books.Find(id);
+            Book book = db.Books.Where(x => x.BookID == id).Include("Authors").FirstOrDefault();
             if (book == null)
             {
                 return HttpNotFound();
@@ -92,7 +76,6 @@ namespace BookShelf.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "BookID,Title,ISBN")] Book book)
         public ActionResult Edit(Book book)
         {
             if (ModelState.IsValid)
@@ -128,7 +111,6 @@ namespace BookShelf.Controllers
             return RedirectToAction("Index");
         }
 
-        //[ValidateAntiForgeryToken]
         public ActionResult Search(string searchTerm, int? currentPage)
         {
             if (string.IsNullOrWhiteSpace(searchTerm))

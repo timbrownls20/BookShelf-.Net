@@ -1,9 +1,7 @@
 ﻿using BookShelf.WebServices.Interfaces;
 using System.Collections.Generic;
-using BookShelf.Models;
 using BookShelf.ViewModels;
 using RestSharp;
-using Google = BookShelf.WebServices.Google.Messages;
 
 namespace BookShelf.WebServices.Google
 {
