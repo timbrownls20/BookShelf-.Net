@@ -1,0 +1,4 @@
+﻿@model BookShelf.Models.Author
+
+@Html.HiddenFor(model => model.AuthorID)
+@Html.EditorFor(model => model.DisplayName, new { htmlAttributes = new { @class = "form-control" } })

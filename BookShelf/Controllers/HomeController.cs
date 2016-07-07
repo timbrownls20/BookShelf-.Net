@@ -10,6 +10,9 @@ namespace BookShelf.Controllers
     {
         public ActionResult Index()
         {
+            //Session["SearchTerm"] = null;
+            //Session["CurrentPage"] = null;
+
             return View();
         }
 

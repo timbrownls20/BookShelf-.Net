@@ -1,0 +1,15 @@
+﻿
+In progress
+HTML control and template for Description field
+
+TODO
+include authors on search
+Put in JQuery autocomplete for add screen
+Put in repository layer
+Move paging control into Html Helper
+Put in auth method for federated authentication
+Put in data migrations to maintain data
+Move into PaaS system
+Put in worker role to get book image and save too database
+Action filter to flatten session for search in controller
+Control to add and remove authors

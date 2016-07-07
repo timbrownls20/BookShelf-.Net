@@ -4,11 +4,9 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using BookShelf.Dal;
 using BookShelf.Models;
-using BookShelf.ViewModels;
 using BookShelf.WebServices.Interfaces;
 
 namespace BookShelf.Controllers
@@ -23,20 +21,18 @@ namespace BookShelf.Controllers
             this.bookService = bookService;
         }
 
-        // GET: Book
         public ActionResult Index()
         {
             return View(db.Books.ToList());
         }
 
-        // GET: Book/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Books.Find(id);
+            Book book = db.Books.Where(x => x.BookID == id).Include("Authors").FirstOrDefault();
             if (book == null)
             {
                 return HttpNotFound();
@@ -44,18 +40,15 @@ namespace BookShelf.Controllers
             return View(book);
         }
 
-        // GET: Book/Create
-        public ActionResult Create()
+        public ActionResult Create(string id)
         {
-            return View();
+            var book = bookService.Get(id);
+            return View("Save", book);
         }
 
-        // POST: Book/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BookID,Title,ISBN")] Book book)
+        public ActionResult Create(Book book)
         {
             if (ModelState.IsValid)
             {
@@ -64,30 +57,26 @@ namespace BookShelf.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(book);
+            return View("Save", book);
         }
 
-        // GET: Book/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Books.Find(id);
+            Book book = db.Books.Where(x => x.BookID == id).Include("Authors").FirstOrDefault();
             if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(book);
+            return View("Save", book);
         }
 
-        // POST: Book/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BookID,Title,ISBN")] Book book)
+        public ActionResult Edit(Book book)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +87,6 @@ namespace BookShelf.Controllers
             return View(book);
         }
 
-        // GET: Book/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +101,6 @@ namespace BookShelf.Controllers
             return View(book);
         }
 
-        // POST: Book/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -124,15 +111,27 @@ namespace BookShelf.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Search()
+        public ActionResult Search(string searchTerm, int? currentPage)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                return View();
+            }
+            else
+            {
+                Session["SearchTerm"] = searchTerm;
+                Session["CurrentPage"] = currentPage;
+
+                var viewModel = bookService.Search(searchTerm, currentPage.GetValueOrDefault(1));
+                return View(viewModel);
+            }
         }
 
         [HttpPost]
-        public ActionResult Search(string searchTerm, int page)
+        public ActionResult Search(string searchTerm)
         {
-            var viewModel = bookService.SearchBooks(searchTerm, page);
+            Session["SearchTerm"] = searchTerm;
+            var viewModel = bookService.Search(searchTerm, 1);
             return View(viewModel);
         }
 
