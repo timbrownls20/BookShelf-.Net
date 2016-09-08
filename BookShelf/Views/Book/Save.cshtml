@@ -1,4 +1,4 @@
-﻿@model BookShelf.Models.Book
+﻿@model Book
 
 @{
     ViewBag.Title = "Save";
@@ -42,8 +42,13 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Authors, new { htmlAttributes = new { @class = "form-control" } })
             </div>
+          
+            <div class="col-md-4 col-md-offset-2 form-inline">
+                @Html.TextBox("txtNewAuthor", null, new { @class = "form-control" })
+                <input type="button" id="btnAddAuthor" value="Add" class="btn btn-primary" />
+            </div>
         </div>
-
+        
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -72,4 +77,36 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#btnAddAuthor').on('click', function () {
+
+                var authorName = $('#txtNewAuthor').val();
+                var lastAuthor = $('.shelf-author:last');
+                //var lastAuthorFormName = $('.shelf-author:last :text').attr('name');
+                var lastAuthorFormName = $(lastAuthor).find(':text').attr('name');
+                //alert(lastAuthorFormName)
+
+
+                lastAuthor.after('<div class="form-group shelf-author">' +
+                                                    '<div class="col-md-10">' +
+                                                        '<input class="form-control text-box single-line" id="Authors_2__DisplayName" name="Authors[2].DisplayName" type="text" value="' + authorName + '">' +
+                                                    '</div>' +
+                                               '</div>')
+
+                $('#txtNewAuthor').val('');
+
+            });
+        });
+
+    </script>
 }
+
+@*<div class="col-md-10 shelf-author">
+    <input data-val="true" data-val-number="The field AuthorID must be a number." data-val-required="The AuthorID field is required." id="Authors_2__AuthorID" name="Authors[2].AuthorID" type="hidden" value="0">
+    <input class="form-control text-box single-line" id="Authors_2__DisplayName" name="Authors[2].DisplayName" type="text" value="Mario Szpuszta">
+</div>*@

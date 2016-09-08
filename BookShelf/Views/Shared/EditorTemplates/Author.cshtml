@@ -1,4 +1,9 @@
-﻿@model BookShelf.Models.Author
+﻿@model Author
 
-@Html.HiddenFor(model => model.AuthorID)
-@Html.EditorFor(model => model.DisplayName, new { htmlAttributes = new { @class = "form-control" } })
+<div class="form-group shelf-author">
+    <div class="col-md-10">
+        @Html.HiddenFor(model => model.AuthorID)
+        @Html.EditorFor(model => model.DisplayName, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+</div>
+
