@@ -77,7 +77,20 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/handlebars")
 
+    <script id="author-template" type="text/x-handlebars-template">
+        <div class="form-group shelf-author">
+            <div class="col-md-10">
+                <input id="Authors_{{index}}__AuthorID" name="Authors[{{index}}].AuthorID" type="hidden" value="0">
+                <input class="form-control text-box single-line" 
+                        id="Authors_{{index}}__DisplayName" 
+                        name="Authors[{{index}}].DisplayName" 
+                        type="text" 
+                        value="{{authorName}}">
+            </div>
+        </div>
+    </script>
 
     <script type="text/javascript">
 
@@ -85,18 +98,21 @@
 
             $('#btnAddAuthor').on('click', function () {
 
+                if ($('#txtNewAuthor').val() == '') return;
+
                 var authorName = $('#txtNewAuthor').val();
                 var lastAuthor = $('.shelf-author:last');
-                //var lastAuthorFormName = $('.shelf-author:last :text').attr('name');
                 var lastAuthorFormName = $(lastAuthor).find(':text').attr('name');
-                //alert(lastAuthorFormName)
+                var index = parseInt(lastAuthorFormName.match(/\[(\d*)\]/)[1]) + 1;
 
+                var source = $("#author-template").html();
+                var template = Handlebars.compile(source);
+                var data = {
+                    index: index,
+                    authorName: authorName
+                };
 
-                lastAuthor.after('<div class="form-group shelf-author">' +
-                                                    '<div class="col-md-10">' +
-                                                        '<input class="form-control text-box single-line" id="Authors_2__DisplayName" name="Authors[2].DisplayName" type="text" value="' + authorName + '">' +
-                                                    '</div>' +
-                                               '</div>')
+                lastAuthor.after(template(data));
 
                 $('#txtNewAuthor').val('');
 
@@ -107,6 +123,6 @@
 }
 
 @*<div class="col-md-10 shelf-author">
-    <input data-val="true" data-val-number="The field AuthorID must be a number." data-val-required="The AuthorID field is required." id="Authors_2__AuthorID" name="Authors[2].AuthorID" type="hidden" value="0">
-    <input class="form-control text-box single-line" id="Authors_2__DisplayName" name="Authors[2].DisplayName" type="text" value="Mario Szpuszta">
-</div>*@
+        <input data-val="true" data-val-number="The field AuthorID must be a number." data-val-required="The AuthorID field is required." id="Authors_2__AuthorID" name="Authors[2].AuthorID" type="hidden" value="0">
+        <input class="form-control text-box single-line" id="Authors_2__DisplayName" name="Authors[2].DisplayName" type="text" value="Mario Szpuszta">
+    </div>*@
