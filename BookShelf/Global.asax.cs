@@ -1,11 +1,12 @@
-﻿using BookShelf.Infrastructure;
+﻿using BookShelf.DataAccess;
+using BookShelf.MVC.Infrastructure;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace BookShelf
+namespace BookShelf.MVC
 {
     
     public class MvcApplication : System.Web.HttpApplication

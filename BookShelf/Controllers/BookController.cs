@@ -5,11 +5,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using BookShelf.Dal;
-using BookShelf.Models;
-using BookShelf.WebServices.Interfaces;
+using BookShelf.DataAccess.Models;
+using BookShelf.DataAccess.Dal;
+using BookShelf.DataAccess.WebServices.Interfaces;
 
-namespace BookShelf.Controllers
+namespace BookShelf.MVC.Controllers
 {
     public class BookController : Controller
     {

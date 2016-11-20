@@ -3,12 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShelf", "BookShelf\BookShelf.csproj", "{9FEAD90A-4F80-44FF-B4CC-52295FC18485}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShelf.MVC", "BookShelf\BookShelf.MVC.csproj", "{9FEAD90A-4F80-44FF-B4CC-52295FC18485}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{751DEEF2-DC89-455C-B229-DEE49A4EB726}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShelf.DataAccess", "BookShelf.DataAccess\BookShelf.DataAccess.csproj", "{667E454B-4F13-435B-95D2-1E1774CEECFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +22,10 @@ Global
 		{9FEAD90A-4F80-44FF-B4CC-52295FC18485}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FEAD90A-4F80-44FF-B4CC-52295FC18485}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FEAD90A-4F80-44FF-B4CC-52295FC18485}.Release|Any CPU.Build.0 = Release|Any CPU
+		{667E454B-4F13-435B-95D2-1E1774CEECFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{667E454B-4F13-435B-95D2-1E1774CEECFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{667E454B-4F13-435B-95D2-1E1774CEECFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{667E454B-4F13-435B-95D2-1E1774CEECFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

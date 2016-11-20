@@ -105,12 +105,14 @@
                 var lastAuthorFormName = $(lastAuthor).find(':text').attr('name');
                 var index = parseInt(lastAuthorFormName.match(/\[(\d*)\]/)[1]) + 1;
 
-                var source = $("#author-template").html();
-                var template = Handlebars.compile(source);
                 var data = {
                     index: index,
                     authorName: authorName
                 };
+
+                var source = $("#author-template").html();
+                var template = Handlebars.compile(source);
+             
 
                 lastAuthor.after(template(data));
 
@@ -122,7 +124,3 @@
     </script>
 }
 
-@*<div class="col-md-10 shelf-author">
-        <input data-val="true" data-val-number="The field AuthorID must be a number." data-val-required="The AuthorID field is required." id="Authors_2__AuthorID" name="Authors[2].AuthorID" type="hidden" value="0">
-        <input class="form-control text-box single-line" id="Authors_2__DisplayName" name="Authors[2].DisplayName" type="text" value="Mario Szpuszta">
-    </div>*@

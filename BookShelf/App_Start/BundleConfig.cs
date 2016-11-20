@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace BookShelf
+namespace BookShelf.MVC
 {
     public class BundleConfig
     {
