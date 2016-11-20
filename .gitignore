@@ -7,3 +7,5 @@
 /packages
 /.vs/config
 *.suo
+/BookShelf.SPA/bin
+/BookShelf.SPA/obj/Debug
