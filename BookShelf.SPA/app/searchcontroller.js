@@ -7,7 +7,7 @@
 
     //searchController.$inject = ['$location']; 
 
-    function searchController($scope) {
+    function searchController($scope, $http) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'searchController';
@@ -16,18 +16,15 @@
 
         function activate() { }
 
-        $scope.searchTerm = "";
-        $scope.debugMessage = "Hello World";
-
         $scope.search = function () {
-            //alert(msg);
-            alert($scope.searchTerm);
-        };
+            
+            var url = 'https://www.googleapis.com/books/v1/volumes?q='
+
+            $http.get(url + $scope.searchTerm)
+                .then(function (response) {
+                    $scope.searchResults = response.data;
+                });
+            };
     }
 })();
 
-//var ngApp = angular.module('myapp', []);
-
-//ngApp.controller('searchController', function ($scope) {
-//    $scope.debugMessage = "Hello World!";
-//});

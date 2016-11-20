@@ -87,20 +87,50 @@
             <div class="row">
                 <form>
                     <div class="col-md-4"><input type="text" class="form-control" ng-model="searchTerm" /></div>
-                    <div class="col-md-8"><input type="button" class="btn btn-primary" value="Search" ng-click="search('abc')" /></div>
+                    <div class="col-md-8"><input type="button" class="btn btn-primary" value="Search" ng-click="search()" /></div>
                 </form>
             </div>
-           <div class="row">
-               <div class="col-md-8">
-                   {{searchTerm}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8">
-                    {{debugMessage}}
-                </div>
-            </div>
 
+        <!-- Page Header -->
+        <div class="row" ng-show="searchResults">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    {{searchTerm}}
+                    <small>Total Items {{searchResults.totalItems}}</small>
+                </h1>
+            </div>
+        </div>
+
+           <!--<div class="row" ng-show="searchResults">
+               <div class="col-md-8">
+                   Total Items {{searchResults.totalItems}}
+                </div>
+            </div>-->
+
+            <!--<div class="row" ng-repeat="item in searchResults.items">
+                <div class="col-md-8">
+                    {{item.volumeInfo.title}}
+                </div>
+            </div>-->
+
+            <div class="col-md-4 portfolio-item" ng-repeat="item in searchResults.items">
+                <a href="#">
+                    <img class="img-responsive" src="{{item.volumeInfo.imageLinks.thumbnail}}" alt="">
+                </a>
+                <h3>
+                    <a href="#">{{item.volumeInfo.title}}</a>
+                </h3>
+                <p>{{item.volumeInfo.description | limitTo:200}}</p>
+            </div>
+                
+            <div class="row" ng-show="searchResults">
+            <div class="col-md-8">
+                <hr/>
+                <pre>
+                     {{searchResults | json}}
+                </pre>
+                </div>
+            </div>
         </div>
     <!-- /.container -->
 

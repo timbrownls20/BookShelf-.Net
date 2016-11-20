@@ -108,6 +108,7 @@
     <Content Include="app\app.module.js" />
     <Content Include="app\demo.js" />
     <Content Include="app\searchController.js" />
+    <Content Include="Content\3-col-portfolio.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
