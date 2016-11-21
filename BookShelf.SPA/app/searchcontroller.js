@@ -18,9 +18,9 @@
 
         $scope.search = function () {
             
-            var url = 'https://www.googleapis.com/books/v1/volumes?q='
+            var url = 'https://www.googleapis.com/books/v1/volumes?maxResults=12&q=' + $scope.searchTerm
 
-            $http.get(url + $scope.searchTerm)
+            $http.get(url)
                 .then(function (response) {
                     $scope.searchResults = response.data;
                 });

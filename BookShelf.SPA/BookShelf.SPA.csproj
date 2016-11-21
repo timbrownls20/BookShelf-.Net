@@ -94,6 +94,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bookshelf-custom.css" />
     <Content Include="packages.config" />
     <Content Include="scripts\angular.min.js.map" />
     <Content Include="scripts\jquery-1.9.0.min.map" />
@@ -106,14 +107,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.module.js" />
-    <Content Include="app\demo.js" />
     <Content Include="app\searchController.js" />
     <Content Include="Content\3-col-portfolio.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Demo.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Index.html" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />

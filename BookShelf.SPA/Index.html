@@ -2,33 +2,16 @@
 <html lang="en" ng-app="app">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bare - Start Bootstrap Template</title>
+    <title>Bookshelf</title>
 
-    <!-- Bootstrap Core CSS -->
     <link href="content/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <style>
-    body {
-        padding-top: 70px;
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    }
-    </style>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <link href="content/bookshelf-custom.css" rel="stylesheet">
 </head>
 
 <body>
@@ -69,21 +52,9 @@
     <!-- Page Content -->
     <div class="container" ng-controller="searchController">
 
-        <!--<div class="row">
-            <div class="col-lg-12 text-center">
-                <h1>A Bootstrap Starter Template</h1>
-                <p class="lead">Complete with pre-defined file paths that you won't have to change!!</p>
-                <ul class="list-unstyled">
-                    <li>Bootstrap v3.3.7</li>
-                    <li>jQuery v1.11.1</li>
-                </ul>
-            </div>
-        </div>-->
-        <!-- /.row -->
+        
         <h2>Search</h2>
 
-
-        
             <div class="row">
                 <form>
                     <div class="col-md-4"><input type="text" class="form-control" ng-model="searchTerm" /></div>
@@ -91,42 +62,33 @@
                 </form>
             </div>
 
-        <!-- Page Header -->
-        <div class="row" ng-show="searchResults">
-            <div class="col-lg-12">
-                <h1 class="page-header">
-                    {{searchTerm}}
-                    <small>Total Items {{searchResults.totalItems}}</small>
-                </h1>
-            </div>
-        </div>
-
-           <!--<div class="row" ng-show="searchResults">
-               <div class="col-md-8">
-                   Total Items {{searchResults.totalItems}}
-                </div>
-            </div>-->
-
-            <!--<div class="row" ng-repeat="item in searchResults.items">
-                <div class="col-md-8">
-                    {{item.volumeInfo.title}}
-                </div>
-            </div>-->
-
-            <div class="col-md-4 portfolio-item" ng-repeat="item in searchResults.items">
-                <a href="#">
-                    <img class="img-responsive" src="{{item.volumeInfo.imageLinks.thumbnail}}" alt="">
-                </a>
-                <h3>
-                    <a href="#">{{item.volumeInfo.title}}</a>
-                </h3>
-                <p>{{item.volumeInfo.description | limitTo:200}}</p>
-            </div>
-                
+            <!-- Page Header -->
             <div class="row" ng-show="searchResults">
-            <div class="col-md-8">
-                <hr/>
-                <pre>
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        <small>Total Items {{searchResults.totalItems}}</small>
+                    </h1>
+                </div>
+            </div>
+           
+
+            <div class="row" ng-repeat="item in searchResults.items" ng-if="$index % 3 == 0">
+                <div class="col-md-4 portfolio-item" ng-repeat="i in [$index, $index + 1, $index + 2]" ng-init="item = searchResults.items[i]">
+                    <a href="#">
+                        <img class="imageClip" src="{{item.volumeInfo.imageLinks.thumbnail}}" alt="">
+                    </a>
+                    <h3>
+                        <a href="#">{{item.volumeInfo.title}}</a>
+                    </h3>
+                    <!--<p>{{$index}}</p>-->
+                    <p>{{item.volumeInfo.description | limitTo:200}}</p>
+                </div>
+            </div>
+
+            <div class="row" ng-show="searchResults">
+                <div class="col-md-8">
+                    <hr />
+                    <pre>
                      {{searchResults | json}}
                 </pre>
                 </div>
