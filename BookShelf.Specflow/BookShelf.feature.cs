@@ -74,16 +74,18 @@ namespace BookShelf.Specflow
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Retrieve a list of books")]
+        [NUnit.Framework.CategoryAttribute("important")]
         public virtual void RetrieveAListOfBooks()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Retrieve a list of books", ((string[])(null)));
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Retrieve a list of books", new string[] {
+                        "important"});
+#line 10
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
-#line 10
- testRunner.Given("I have searched for a book about \'dinosaurs\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
+ testRunner.Given("I have searched for a book about \'dinosaurs\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 12
  testRunner.Then("I retrieve a page of 10 results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -91,17 +93,38 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Finding a particular book")]
+        [NUnit.Framework.CategoryAttribute("important")]
         public virtual void FindingAParticularBook()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Finding a particular book", ((string[])(null)));
-#line 13
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Finding a particular book", new string[] {
+                        "important"});
+#line 15
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
-#line 14
+#line 16
  testRunner.Given("I have searched for the book \'harry potter and the chamber of secrets\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 15
+#line 17
  testRunner.Then("\'harry potter and the chamber of secrets\' is on the first page of results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("A less important test")]
+        public virtual void ALessImportantTest()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A less important test", ((string[])(null)));
+#line 19
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line 20
+ testRunner.Given("I am using the virtual book shelf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 21
+ testRunner.When("I am browsing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 22
+ testRunner.Then("I don\'t want to be logged out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
