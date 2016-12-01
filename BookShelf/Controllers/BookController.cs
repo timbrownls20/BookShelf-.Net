@@ -8,20 +8,23 @@ using System.Web.Mvc;
 using BookShelf.DataAccess.Models;
 using BookShelf.DataAccess.Dal;
 using BookShelf.DataAccess.WebServices.Interfaces;
+using BookShelf.MVC.Infrastructure;
 
 namespace BookShelf.MVC.Controllers
 {
     public class BookController : Controller
     {
         private BookShelfContext db = new BookShelfContext();
-        private IBookService bookService;
+        private IBookService _bookService;
+        private ISessionKeys _session;
 
-        public BookController(IBookService bookService)
+        public BookController(IBookService bookService, ISessionKeys session)
         {
-            this.bookService = bookService;
+            _bookService = bookService;
+            _session = session;
         }
 
-        public ActionResult Index()
+        public ViewResult Index()
         {
             return View(db.Books.ToList());
         }
@@ -40,9 +43,9 @@ namespace BookShelf.MVC.Controllers
             return View(book);
         }
 
-        public ActionResult Create(string id)
+        public ViewResult Create(string id)
         {
-            var book = bookService.Get(id);
+            var book = _bookService.Get(id);
             return View("Save", book);
         }
 
@@ -103,7 +106,7 @@ namespace BookShelf.MVC.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public RedirectToRouteResult DeleteConfirmed(int id)
         {
             Book book = db.Books.Find(id);
             db.Books.Remove(book);
@@ -111,7 +114,7 @@ namespace BookShelf.MVC.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Search(string searchTerm, int? currentPage)
+        public ViewResult Search(string searchTerm, int? currentPage)
         {
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
@@ -119,19 +122,19 @@ namespace BookShelf.MVC.Controllers
             }
             else
             {
-                Session["SearchTerm"] = searchTerm;
-                Session["CurrentPage"] = currentPage;
+                _session.SearchTerm = searchTerm;
+                _session.CurrentPage = currentPage;
 
-                var viewModel = bookService.Search(searchTerm, currentPage.GetValueOrDefault(1));
+                var viewModel = _bookService.Search(searchTerm, currentPage.GetValueOrDefault(1));
                 return View(viewModel);
             }
         }
 
         [HttpPost]
-        public ActionResult Search(string searchTerm)
+        public ViewResult Search(string searchTerm)
         {
-            Session["SearchTerm"] = searchTerm;
-            var viewModel = bookService.Search(searchTerm, 1);
+            _session.SearchTerm = searchTerm;
+            var viewModel = _bookService.Search(searchTerm, 1);
             return View(viewModel);
         }
 

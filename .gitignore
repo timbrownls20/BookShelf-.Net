@@ -9,3 +9,7 @@
 *.suo
 /BookShelf.SPA/bin
 /BookShelf.SPA/obj/Debug
+/BookShelf.Specflow/obj
+/BookShelf.Specflow/bin
+/BookShelf.DataAccess/obj
+/BookShelf.DataAccess/bin
