@@ -8,5 +8,6 @@ Demo app which searches for and maintains list of books
 - Automapper
 - Dependency Injection (Castle Winsdor)
 - RESTful API (Google Book API)
-- Federated API calls (Google Auth)
+- SpecFlow tests including example on how to stress tests
+- Single page application with angular js
 

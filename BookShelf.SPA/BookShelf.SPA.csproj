@@ -94,10 +94,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\detailsController.js" />
     <Content Include="Content\bookshelf-custom.css" />
     <Content Include="packages.config" />
+    <Content Include="scripts\angular-route.js" />
+    <Content Include="scripts\angular-route.min.js" />
     <Content Include="scripts\angular.min.js.map" />
     <Content Include="scripts\jquery-1.9.0.min.map" />
+    <Content Include="scripts\angular-route.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -131,6 +135,8 @@
     <Content Include="scripts\ng-infinite-scroll.js" />
     <Content Include="scripts\ng-infinite-scroll.min.js" />
     <Content Include="TODO.txt" />
+    <Content Include="views\details.html" />
+    <Content Include="views\search.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
