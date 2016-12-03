@@ -12,8 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShelf.DataAccess", "BookShelf.DataAccess\BookShelf.DataAccess.csproj", "{667E454B-4F13-435B-95D2-1E1774CEECFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShelf.SPA", "BookShelf.SPA\BookShelf.SPA.csproj", "{2300B23A-F250-410C-9590-687D2C5AAB68}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShelf.Specflow", "BookShelf.Specflow\BookShelf.Specflow.csproj", "{3312C6F1-4F06-42ED-B7D9-0A0A7A705452}"
 EndProject
 Global
@@ -30,10 +28,6 @@ Global
 		{667E454B-4F13-435B-95D2-1E1774CEECFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{667E454B-4F13-435B-95D2-1E1774CEECFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{667E454B-4F13-435B-95D2-1E1774CEECFF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2300B23A-F250-410C-9590-687D2C5AAB68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2300B23A-F250-410C-9590-687D2C5AAB68}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2300B23A-F250-410C-9590-687D2C5AAB68}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2300B23A-F250-410C-9590-687D2C5AAB68}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3312C6F1-4F06-42ED-B7D9-0A0A7A705452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3312C6F1-4F06-42ED-B7D9-0A0A7A705452}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3312C6F1-4F06-42ED-B7D9-0A0A7A705452}.Release|Any CPU.ActiveCfg = Release|Any CPU
