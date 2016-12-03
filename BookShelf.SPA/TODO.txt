@@ -1,5 +1,5 @@
 ﻿1. Add loading icon
 2. Make authenicated calls to google API
-3. Add message when API call falis
-4. Detailed view of books
-5. Refactor out into own project - that uses different IDE?
+3. Add message when API call fails
+4. Refactor out into own project - that uses different IDE?
+5. Make details to search navigable

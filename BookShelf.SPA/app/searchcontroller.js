@@ -5,7 +5,7 @@
         .module('app')
         .controller('searchController', searchController);
 
-    function searchController($scope, $http) {
+    function searchController($scope, bookService) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'searchController';
@@ -20,13 +20,10 @@
             getResults();
         }
 
-        function getResults()        {
-            var url = 'https://www.googleapis.com/books/v1/volumes?maxResults=12&q=' + $scope.searchTerm + '&startIndex=' + getStartIndex();
-
-            console.log(url);
+        function getResults() {
 
             page += 1;
-            $http.get(url)
+            bookService.search($scope.searchTerm, getStartIndex())
                 .then(function (response) {
 
                     if ($scope.searchResults) {

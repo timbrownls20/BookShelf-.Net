@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\detailsController.js" />
+    <Content Include="app\services.js" />
     <Content Include="Content\bookshelf-custom.css" />
     <Content Include="packages.config" />
     <Content Include="scripts\angular-route.js" />

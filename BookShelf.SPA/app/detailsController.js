@@ -5,16 +5,13 @@
         .module('app')
         .controller('detailsController', detailsController);
 
-    function detailsController($scope, $http, $routeParams) {
+    function detailsController($scope, $routeParams, bookService) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'detailsController';
         var id = $routeParams.id;
-        var url = 'https://www.googleapis.com/books/v1/volumes/' + id;
-
-        console.log(url);
-
-        $http.get(url)
+        
+        bookService.get(id)
             .then(function (response) {
                 $scope.book = response.data;
             });
